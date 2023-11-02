@@ -17,15 +17,3 @@
 .sapMFlexBox.sapMFlexBoxWrapNoWrap.sapMVBox .demoInnerBox .sapMText {
 	color: #333333;
 }
-
-.cBoxGrid > .fullWidth {
-    grid-column-end: span 2;
-}
-
-.cBoxGrid > .order1 {
-    order: 1;
-}
-
-.cBoxGrid > .order2 {
-    order: 2;
-}

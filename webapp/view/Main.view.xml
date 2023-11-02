@@ -1,52 +1,57 @@
-<mvc:View
-    controllerName="com.myorg.myapp.controller.Main"
-    displayBlock="true"
-    xmlns="sap.m"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns:core="sap.ui.core"
-    xmlns:grid="sap.ui.layout.cssgrid"
-    xmlns:form="sap.ui.layout.form"
-    core:require="{ formatter: 'com/myorg/myapp/model/formatter' }">
+<mvc:View controllerName="com.myorg.myapp.controller.Main" displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns:grid="sap.ui.layout.cssgrid"
+	xmlns:form="sap.ui.layout.form" core:require="{ formatter: 'com/myorg/myapp/model/formatter' }">
 	<Button text="Hide Image" press=".updateGrid" />
 	<Button text="switchBoxes" press=".onSwitchToggle" />
 
-    <Panel id="panelCSSGrid" width="100%" height="100%">
-        <headerToolbar>
-            <OverflowToolbar height="3rem">
-                <Title text="CSS Grid Nested grids example" />
-            </OverflowToolbar>
-        </headerToolbar>
-        <grid:CSSGrid id="grid1" gridTemplateColumns="repeat(2,minmax(250px, 1fr))" gridTemplateRows="1fr 3fr" gridGap="1rem">
-            <VBox class="demoBox">
-                <Title text="A Box" wrapping="true" />
-                <Text text="A Box subtitle" wrapping="true" />
-            </VBox>
-            <VBox class="demoBox">
-                <Title text="B Box" wrapping="true" />
-                <Text text="B Box subtitle" wrapping="true" />
-            </VBox>
-            <VBox class="demoBox">
-                <Title text="C Box" wrapping="true" />
-                <Text text="C Box subtitle" wrapping="true" />
-                <!-- This is where X Box and Y Box will be integrated -->
-                <grid:CSSGrid id="cssgrid" class="cBoxGrid" gridTemplateColumns="2fr 1fr" gridColumnGap="1rem" itemsChange=".updateGrid">
-                    <form:SimpleForm id="xBox" editable="false" layout="ResponsiveGridLayout" title="X Box" width="100%">
-                        <form:content>
-                            <Label text="First Name"/>
-                            <Input value="{viewModel>/firstName}" />
-                            <Label text="Last Name"/>
-                            <Input value="{viewModel>/lastName}" />
-                            <!-- You can continue adding more form fields as needed -->
-                        </form:content>
-                    </form:SimpleForm>
-                    <Image id="yBox" src="{viewModel>/imagePath}" visible="{viewModel>/yVisible}"/>
-                </grid:CSSGrid>
-            </VBox>
-            <VBox class="demoBox">
-                <grid:CSSGrid gridTemplateColumns="repeat(2,minmax(120px, 1fr))" gridGap="0.5rem">
-                    <!-- ... rest of the boxes ... -->
-                </grid:CSSGrid>
-            </VBox>
-        </grid:CSSGrid>
-    </Panel>
+	<Panel id="panelCSSGrid" width="100%" height="100%">
+		<headerToolbar>
+			<OverflowToolbar height="3rem">
+				<Title text="CSS Grid Nested grids example" />
+			</OverflowToolbar>
+		</headerToolbar>
+		<grid:CSSGrid id="grid1" gridTemplateColumns="repeat(2,minmax(250px, 1fr))" gridTemplateRows="1fr 3fr" gridGap="1rem">
+			<VBox class="demoBox">
+				<Title text="A Box" wrapping="true" />
+				<Text text="A Box subtitle" wrapping="true" />
+			</VBox>
+			<VBox class="demoBox">
+				<Title text="B Box" wrapping="true" />
+				<Text text="B Box subtitle" wrapping="true" />
+			</VBox>
+			<VBox class="demoBox">
+				<Title text="C Box" wrapping="true" />
+				<Text text="C Box subtitle" wrapping="true" />
+				<!-- This is where X Box and Y Box will be integrated -->
+				<HBox id="cBoxHBox" justifyContent="Center" alignItems="Center" width="100%">
+					<form:SimpleForm id="xBox" class="flexBoxItem" editable="false" layout="ResponsiveGridLayout" title="X Box">
+						<form:content>
+							<Label text="First Name"/>
+							<Input value="{viewModel>/firstName}" />
+							<Label text="Last Name"/>
+							<Input value="{viewModel>/lastName}" />
+							<!-- You can continue adding more form fields as needed -->
+
+						</form:content>
+						<form:layoutData>
+							<FlexItemData growFactor="2" baseSize="0%"/>
+						</form:layoutData>
+					</form:SimpleForm>
+					<Image id="yBox" class="flexBoxItem" src="{viewModel>/imagePath}" visible="{viewModel>/imageVisible}">
+						<layoutData>
+							<FlexItemData growFactor="1" baseSize="0%"/>
+						</layoutData>
+					</Image>
+				</HBox>
+			</VBox>
+			<VBox class="demoBox">
+				<grid:CSSGrid gridTemplateColumns="repeat(2,minmax(120px, 1fr))" gridGap="0.5rem">
+					<!-- ... rest of the boxes ... -->
+				</grid:CSSGrid>
+			</VBox>
+		</grid:CSSGrid>
+	</Panel>
 </mvc:View>
